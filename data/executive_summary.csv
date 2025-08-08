@@ -1,0 +1,13 @@
+Column,Data Type,Missing Values,Unique Values
+index,int64,0,300153
+airline,object,0,6
+flight,object,0,1561
+source_city,object,0,6
+departure_time,object,0,6
+stops,object,0,3
+arrival_time,object,0,6
+destination_city,object,0,6
+class,object,0,2
+duration,float64,0,476
+days_left,int64,0,49
+price,int64,0,12157

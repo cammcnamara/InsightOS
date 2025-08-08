@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body {
+        background: #111827;
+        color: #f9fafb;
+    }
+
+    .upload-card {
+        max-width: 500px;
+        margin: 10vh auto;
+        backdrop-filter: blur(12px);
+        background: rgba(30, 41, 59, 0.75);
+        border: 1px linear-gradient(135deg, #0ea5e9, #2563eb);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        padding: 3rem;
+        text-align: center;
+        animation: floatIn 1s ease;
+    }
+
+    @keyframes floatIn {
+        from {
+            opacity: 0;
+            transform: translateY(60px) scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    #upload-form input {
+        background-color: #1f2937;
+        color: #f9fafb;
+        border: none;
+    }
+
+    #upload-form input::file-selector-button {
+        background-color: white;
+        color: #1f2937;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+    }
+
+    .btn-primary {
+        background-color: #0ea5e9;
+        border-color: #0ea5e9;
+        border-radius: 10px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        transition: 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0284c7;
+    }
+
+    #loading-spinner {
+        display: none;
+    }
+</style>
+
+<div class="upload-card">
+    <h2 class="mb-3">Welcome to <span class="text-info">InsightOS</span></h2>
+    <p class="text-muted mb-4">Upload your dataset to generate instant insights.</p>
+
+    <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" class="form-control mb-3" required>
+        <button type="submit" class="btn btn-primary">Analyze Dataset</button>
+    </form>
+
+    <div id="loading-spinner" class="mt-4">
+        <div class="spinner-border text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Generating executive summary...</p>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById("upload-form");
+    const spinner = document.getElementById("loading-spinner");
+
+    form.addEventListener("submit", function () {
+        form.style.display = "none";
+        spinner.style.display = "block";
+    });
+</script>
+{% endblock %}

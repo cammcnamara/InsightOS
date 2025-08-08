@@ -1,0 +1,31 @@
+body {
+    background-color: #f9f9f9;
+    color: #212529;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 600;
+}
+
+.navbar-brand span {
+    color: #0dcaf0 !important;
+    /* Light blue */
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+.btn-info {
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
+}
+
+.btn-info:hover {
+    background-color: #0bb8dc;
+    border-color: #0bb8dc;
+}

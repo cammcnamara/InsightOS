@@ -1,6 +1,16 @@
+# FastAPI server and Jinja2 templating
+fastapi
+uvicorn[standard]
+jinja2
+
+# Data handling and modeling
 pandas
-numpy
 scikit-learn
-xgboost
+numpy
+
+# Causal Inference & SHAP (for future steps)
 shap
-streamlit
+causalml
+
+# Optional (but recommended)
+python-multipart  # Required for file uploads

@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body {
+        background: #111827;
+        color: #f9fafb;
+    }
+
+    .summary-container {
+        animation: fadeSlideUp 1s ease;
+        background: #1e293b;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        max-width: 85%;
+        margin: auto;
+    }
+
+    @keyframes fadeSlideUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .table {
+        font-size: 0.9rem;
+        color: #f9fafb;
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .cta-solid {
+        background: linear-gradient(135deg, #0ea5e9, #2563eb);
+        color: white;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+        min-width: 200px;
+        text-align: center;
+    }
+
+    .cta-solid:hover {
+        transform: translateY(-3px) scale(1.03);
+    }
+
+    .cta-outline {
+        border: 2px solid #0ea5e9;
+        color: #0ea5e9;
+        font-weight: 600;
+        border-radius: 10px;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        background: transparent;
+        transition: transform 0.3s ease, background-color 0.2s;
+        min-width: 200px;
+        text-align: center;
+    }
+
+    .cta-outline:hover {
+        background-color: rgba(14, 165, 233, 0.1);
+        transform: translateY(-3px) scale(1.03);
+    }
+</style>
+<div class="summary-container">
+    <h1 class="mb-4 text-center">Data Summary</h1>
+
+    <!-- STATS CARDS -->
+    <div class="row text-center mb-4">
+        <div class="col-md-3">
+            <h5>Rows</h5>
+            <p>{{ stats.rows }}</p>
+        </div>
+        <div class="col-md-3">
+            <h5>Columns</h5>
+            <p>{{ stats.columns }}</p>
+        </div>
+        <div class="col-md-3">
+            <h5> Null Columns</h5>
+            <p>{{ stats.null_cols }}</p>
+        </div>
+        <div class="col-md-3">
+            <h5>Categorical</h5>
+            <p>{{ stats.categorical_cols }}</p>
+        </div>
+    </div>
+
+    <!-- SUMMARY TABLE -->
+    <div class="table-responsive">
+        {{ summary | safe }}
+    </div>
+
+    <!-- WARNINGS -->
+    {% if warnings %}
+    <div class="mt-4 p-3 rounded bg-warning text-dark">
+        <h5>Data Warnings:</h5>
+        <ul>
+            {% for w in warnings %}
+            <li>{{ w }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- ACTIONS -->
+    <div class="cta-buttons text-center mt-4">
+        <a href="/shap" class="cta-solid"> Run SHAP Analysis</a>
+        <a href="/uplift" class="cta-solid"> Run Uplift Model</a>
+        <a href="/download-summary" class="cta-outline">Export Summary CSV</a>
+    </div>
+</div>
+{% endblock %}
