@@ -10,18 +10,17 @@ from preprocessing import clean_and_encode
 
 
 st.set_page_config(page_title="InsightOS", layout="wide")
-st.markdown("<style>body { color: black !important; }</style>", unsafe_allow_html=True)
 st.markdown(
     """
     <style>
         html, body, .main {
             background-color: #f3f4f6;
             color: #111827;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
         .stButton>button {
             background-color: #1f2937;
-            color: black;
+            color: white;
             font-weight: 600;
             border-radius: 0.375rem;
             padding: 0.5rem 1.25rem;
